@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D body2D;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private bool isGrounded;
-
+    /*
     [Header("Ground Check")]
     private LayerMask groundLayer;
     private float groundCheckDistance = 0.1f;
     private Transform groundCheck;
+    */
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         Jump();
     }
 
+    #region Movement
     public void Jump()
     {
         if (isGrounded && Input.GetButtonDown("Jump"))
@@ -36,7 +38,9 @@ public class PlayerMovement : MonoBehaviour
     {
         body2D.linearVelocity = new Vector2(x * moveSpeed, body2D.linearVelocity.y);
     }
+    #endregion
 
+    #region Collisions
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
@@ -47,6 +51,20 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            
+        }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("PointCheck"))
+        {
+            GameManager.instance.AddScore(100f);
+        }
+    }
+
+    #endregion
 }
