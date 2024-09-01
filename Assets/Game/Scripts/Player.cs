@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
         if(collision.gameObject.tag == "Obstacle")
         {
-            
+            GameManager.instance.EndGame();
         }
     }
 
