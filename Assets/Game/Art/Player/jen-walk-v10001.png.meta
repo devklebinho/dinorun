@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      jen-walk-v10001_0: 3461012003522299506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
